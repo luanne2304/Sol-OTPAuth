@@ -142,7 +142,7 @@ function completeAuthentication(string memory _data, string memory _publicKey) p
     function verifyHash(string memory _publicKey, bytes32 _dataHash) public view returns (bool) {
         HashRecord memory record = publicKeyHashes[_publicKey];
 
-        // Kiểm tra xem hash có tồn tại và còn trong thời gian hợp lệ không (15p)
+        // Kiểm tra xem hash có tồn tại và còn trong thời gian hợp lệ không (3 ngày)
         return record.dataHash == _dataHash && (block.timestamp <= record.timestamp + 259200);
     }
 
