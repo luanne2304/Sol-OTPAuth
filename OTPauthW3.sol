@@ -62,6 +62,15 @@ contract AuthOTP {
         detailBots[_botId].status=_status;
     }
 
+
+    function getAllBots() public view returns (DetailBot[] memory) {
+        DetailBot[] memory bots = new DetailBot[](detailBotsCount);
+        for (uint i = 0; i < detailBotsCount; i++) {
+            bots[i] = detailBots[i];
+        }
+        return bots;
+    }
+
     
     function requestAuthentication(string memory _userPhoneNumber, string memory _publicKey , TypeMethod _typeMethod) public {
         require(OTPs[_userPhoneNumber].timeRequest+300 < block.timestamp, "OTP just sent, try again later");
